@@ -80,6 +80,15 @@
       "range" : "90 feet",
       "school" : "Evocation"
    },
+   "Blade Ward" : {
+      "casting_time" : "1 action",
+      "components" : "V, S",
+      "description" : "You extend your hand and trace a sigil of warding in the air. Until the end of your next turn, you have resistance against bludgeoning, piercing, and slashing damage dealt by weapon attacks.",
+      "duration" : "1 round",
+      "level" : 1,
+      "range" : "Self",
+      "school" : "Enchantment"
+   },
    "Bless" : {
       "casting_time" : "1 action",
       "components" : "V, S, M (a sprinkling of holy water)",
@@ -404,11 +413,28 @@
       "range" : "Touch",
       "school" : "Abjuration"
    },
+   "Friends" : {
+      "casting_time" : "1 action",
+      "components" : "S, M (a small amount of makeup applied to the face as this spell is cast)",
+      "description" : "For the duration, you have advantage on all Charisma checks directed at one creature of your choice that isn't hostile toward you. W hen the spell ends, the creature realizes that you used m agic to influence its m ood and becom es hostile toward you. A creature prone to violence might attack you. Another creature might seek retribution in other ways (at the DM 's discretion), depending on the nature of your interaction with it.",
+      "duration" : "Concentration, up to 1 minute",
+      "level" : 0,
+      "range" : "Self",
+      "school" : "Enchantment"
+   },
+   "Gaseous Form" : {
+      "casting_time" : "1 action",
+      "components" : "V, S, M (a bit of gauze and a wisp of smoke)",
+      "description" : "You transform a willing creature you touch, along with everything it's wearing and carrying, into a misty cloud for the duration. The spell ends if the creature drops to 0 hit points. An incorporeal creature isn't affected.  W hile in this form, the target's only method of movement is a flying speed of 10 feet. The target can enter and occupy the space of another creature. The target has resistance to nonm agical damage, and it has advantage on Strength, Dexterity, and Constitution saving throws. The target can pass through small holes, narrow openings, and even m ere cracks, though it treats liquids as though they w ere solid surfaces. The target can't fall and remains hovering in the air even when stunned or otherwise incapacitated.  W hile in the form of a misty cloud, the target can't talk or manipulate objects, and any objects it w as carrying or holding can't be dropped, used, or otherwise interacted with. The target can't attack or cast spells.",
+      "duration" : "Concentration, up to 1 hour",
+      "level" : 9,
+      "range" : "Touch",
+      "school" : "Conjuration"
+   },
    "Gate" : {
       "casting_time" : "1 action",
       "components" : "V, S, M (a diamond worth at least 5,000 gp)",
-      "description" : "You conjure a portal linking an unoccupied space you can see within range to a precise location on a different plane of existence. The portal is a circular opening, which you can make 5 to 20 feet in diameter. You can orient the portal in any direction you choose. The portal lasts for the duration. The portal has a front and a back on each plane where it appears. Travel through the portal is possible only by moving through its front. Anything that does so is instantly transported to the other plane, appearing in the unoccupied space nearest to the portal. Deities and other planar rulers can prevent portals created by this spell from opening in their presence or anywhere within their domains. When you cast this spell, you can speak the name of a specific creature (a pseudonym, title, or nickname doesn't work). If that creature is on a plane other than the one you are on, the portal opens in the named creature's immediate vicinity and draws the creature through it to the nearest unoccupied space on your side of the portal. You gain no special power over the creature, and it is free to act as the DM deems appropriate. It might leave, attack you, or help you.",
-      "duration" : "Concentration, up to 1 minute",
+      "description" : "You conjure a portal linking an unoccupied space you can see within range to a precise location on a different plane of existence. The portal is a circular opening, which you can make 5 to 20 feet in diameter. You can orient the portal in any direction you choose. The portal lasts for the duration. The portal has a front and a back on each plane where it appears. Travel through the portal is possible only by moving through its front. Anything that does so is instantly transported to the other plane, appearing in the unoccupied space nearest to the portal. Deities and other planar rulers can prevent portals created by this spell from opening in their presence or anywhere within their domains. When you cast this spell, you can speak the name of a specific creature (a pseudonym, title, or nickname doesn't work). If that creature is on a plane other than the one you are on, the portal opens in the named creature's immediate vicinity and draws the creature through it to the nearest unoccupied space on your side of the portal. You gain no special power over the creature, and it is free to act as the DM deems appropriate. It might leave, attack you, or help you.", "duration" : "Concentration, up to 1 minute",
       "level" : 9,
       "range" : "60 feet",
       "school" : "Conjuration"
@@ -718,6 +744,42 @@
       "level" : 8,
       "range" : "60 feet",
       "school" : "Conjuration"
+   },
+   "Meld Into Stone" : {
+      "casting_time" : "1 action",
+      "components" : "V, S",
+      "description" : "You step into a stone object or surface large enough to fully contain your body, melding yourself and all the equipment you carry with the stone for the duration.  Using your movement, you step into the stone at a point you can touch. Nothing of your presence remains visible or otherwise detectable by nonm agical senses.  W hile merged with the stone, you can't see what occu rs outside it, and any W isdom (Perception) checks you make to hear sounds outside it are made with disadvantage. You remain aware of the passage of time and can cast spells on yourself while merged in the stone. You can use your movement to leave the stone where you entered it, which ends the spell. You otherwise can't move.  Minor physical damage to the stone doesn't harm you, but its partial destruction or a change in its shape (to the extent that you no longer fit within it) expels you and deals 6d6 bludgeoning damage to you. The stone's complete destruction (or transmutation into a different substance) expels you and deals 50 bludgeoning damage to you. If expelled, you fall prone in an unoccupied space closest to where you first entered.",
+      "duration" : "8 hours",
+      "level" : 3,
+      "range" : "Touch",
+      "school" : "Transmutation"
+   },
+   "Melf's Acid Arrow" : {
+      "casting_time" : "1 action",
+      "components" : "V, S, M (pow dered rhubarb leaf and an adder's stomach)",
+      "description" : "A shim m ering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much o f the initial damage and no damage at the end of its next turn.  A t Higher Levels. W hen you cast this spell using a spell slot of 3rd level or higher, the damage (both initial and later) increases by 1d4 for each slot level above 2nd.",
+      "duration" : "Instantaneous",
+      "level" : 2,
+      "range" : "90 feet",
+      "school" : "Evocation"
+   },
+   "Mending" : {
+      "casting_time" : "1 minute",
+      "components" : "V, S, M(two lodestones)",
+      "description" : "This spell repairs a single break or tear in an object you touch, such as a broken chain link, two halves of a broken key, a torn cloak, or a leaking wineskin. As long as the break or tear is no larger than 1 foot in any dimension, you mend it. leaving no trace of the former damage.  This spell can physically repair a m agic item or construct, but the spell can't restore magic to such an object.",
+      "duration" : "Instantaneous",
+      "level" : 0,
+      "range" : "Touch",
+      "school" : "Transmutation"
+   },
+   "Message" : {
+      "casting_time" : "1 action",
+      "components" : "V, S",
+      "description" : "You point your finger toward a creature within range and w hisper a m essage. The target (and only the target) hears the m essage and can reply in a whisper that only you can hear.  You can cast this spell through solid objects if you are familiar with the target and know it is beyond the barrier. M agical silence. 1 foot of stone, 1 inch of com m on metal, a thin sheet of lead, or 3 feet of w ood blocks the spell. The spell doesn't have to follow a straight line and can travel freely around corners or through openings.",
+      "duration" : "Instantaneous",
+      "level" : 0,
+      "range" : "60 feet",
+      "school" : "Transmutation"
    },
    "Meteor Swarm" : {
       "casting_time" : "1 action",
