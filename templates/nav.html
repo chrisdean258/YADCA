@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/css/boardCSS.css">
+</head>
+<body>
+
+<div id="mySidenavLeft" class="sidenavleft">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNavLeft()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<div id="mySidenavRight" class="sidenavright">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNavRight()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<span class="leftnav" style="font-size:30px;cursor:pointer" onclick="openNavLeft()">&#9776; Players</span>
+
+<span class="rightnav" style="font-size:30px;cursor:pointer" onclick="openNavRight()">&#9776; Spells</span>
+
+<script>
+function openNavLeft() {
+    document.getElementById("mySidenavLeft").style.width = "250px";
+}
+
+function closeNavLeft() {
+    document.getElementById("mySidenavLeft").style.width = "0";
+}
+
+function openNavRight() {
+    document.getElementById("mySidenavRight").style.width = "250px";
+}
+
+function closeNavRight() {
+    document.getElementById("mySidenavRight").style.width = "0";
+}
+
+</script>
+     
+</body>
+</html> 
+
