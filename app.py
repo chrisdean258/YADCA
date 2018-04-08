@@ -10,12 +10,15 @@ import os
 app=Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'GET':
+        return render_template('index.html')
+    return redirect(url_for('index'))
 
 @app.route('/<path:filename>')
 def serve_static(filename):
     root_dir = os.path.dirname(os.getcwd())
     print(root_dir)
     return send_from_directory(os.path.join(root_dir,'YADCA' ,'static'), filename)
+

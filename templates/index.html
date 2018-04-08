@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V3</title>
+	<title>YADCA</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -26,9 +26,9 @@
 	<div class="bg-contact3" style="background-image: url('images/1.png');">
 		<div class="container-contact3">
 			<div class="wrap-contact3">
-				<form class="contact3-form validate-form">
+				<form class="contact3-form validate-form" method='POST'>
 					<span class="contact3-form-title">
-						YADCA
+						YADCATEST
 					</span>
 
 					<div class="wrap-contact3-form-radio">
@@ -49,17 +49,17 @@
 
 					<!-- Grab the players real name  -->
 					<div class="wrap-input3 validate-input" data-validate="Name is required">
-						<input class="input3" type="text" name="name" placeholder="Your Name">
+						<input class="input3" id="name" type="text" name="name" placeholder="Your Name">
 						<span class="focus-input3"></span>
 					</div>
-	
+
 					<!--  Grabs the character name  -->
-					<div class="wrap-input3 input3-select" data-validate = "Character name is required">
+					<div class="wrap-input3 input3-select" data-validate="Character name is required">
 						<input class="input3" type="text" name="charName" placeholder="Character Name">
 						<span class="focus-input3"></span>
 					</div>
-					
-					<div class="wrap-input3 input3-select">
+
+					<div class="wrap-input3 input3-select" data-validate="Character class is required">
 						<div>
 							<select class="selection-2" name="infoRace">
 								<option selected disabled>Select Race</option>
@@ -72,7 +72,7 @@
 						<span class="focus-input3"></span>
 					</div>
 
-					<div class="wrap-input3 input3-select">
+					<div class="wrap-input3 input3-select" data-validate="Character class is required">
 						<div>
 							<select class="selection-2" name="infoClass">
 								<option selected disabled>Select Class</option>
@@ -84,8 +84,8 @@
 						</div>
 						<span class="focus-input3"></span>
 					</div>
-					
-					<div class="wrap-input3 input3-select" data-validate = "Room code is required">
+
+					<div class="wrap-input3 input3-select" data-validate="Room code is required">
 						<input class="input3" type="text" name="roomCode" placeholder="Room Code">
 						<span class="focus-input3"></span>
 					</div>
