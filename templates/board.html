@@ -348,7 +348,7 @@ setInterval(load_state, 3000);
     <div id="mySidenavRight" class="sidenavright">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavRight()">&times;</a>
       <div class="search-container">
-        <input type="text" id="spellsearch" onkeypress="return updateSpells();" onkeypress="return updateSpells();">
+        <input type="text" id="spellsearch" onkeyup="return updateSpells();" >
         <div id="spelltext"> </div>
         <div id="spells"> </div>
       </div>
@@ -453,7 +453,8 @@ function updateSpells()
       $("#spells").append("<bold class=\"spellresults\" onclick='$(\"#spellsearch\").val(\""+matches[i].name+"\");updateSpells();'>" + matches[i].name  + "</bold><br>");
     }
   }
-  else if(matches.length == 1 || spells[i].name.toLowerCase().trim() == word.toLowerCase().trim()  || (matches.length > 1 && matches[0].count > matches[1].count))
+  for(let i = 0; i < matches.length; i++)
+  if(matches.length == 1 || matches[i].name.toLowerCase().trim() == word.toLowerCase().trim())
   {
     $("#spelltext").append("<span class=\"spellresults\" >" + matches[0].html_description + "</span>");
   }
