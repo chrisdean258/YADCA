@@ -12,3 +12,8 @@ def new_game(dm_name):
         roomid += 1
     db[str(roomid)] = Game(dm_name)
     return roomid
+
+def get_game(roomid):
+    return db[str(roomid)]
+
+

@@ -33,7 +33,6 @@ def index():
 @app.route('/<path:filename>')
 def serve_static(filename):
     root_dir = os.path.dirname(os.getcwd())
-    print(root_dir)
     return send_from_directory(os.path.join(root_dir,'YADCA' ,'static'), filename)
 
 @app.route('/<roomid>/<name>')
@@ -43,3 +42,9 @@ def room(roomid, name):
 @app.route('/error')
 def error():
     return render_template("error.html")
+
+@app.route('/spells')
+def spells():
+    root_dir = os.path.dirname(os.getcwd())
+    return send_from_directory(os.path.join(root_dir,'YADCA' ,'resources'), 'spells_processed.json')
+
