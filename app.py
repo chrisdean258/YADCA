@@ -18,11 +18,8 @@ def index():
     if request.method == 'GET':
         return render_template('index.html')
 
-    print(request.form)
-
     if "charName" in request.form and request.form["charName"].strip() != "":
         db.save_player(request.form["roomCode"], request.form["name"], request.form["charName"], request.form["infoClass"], request.form["infoRace"])
-        #return redirect(url_for('error'))
         return redirect(url_for('room', name=request.form["charName"], roomid=request.form["roomCode"]))
 
     name = request.form["name"]

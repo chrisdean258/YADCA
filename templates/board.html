@@ -176,6 +176,7 @@ function display_popups()
 function register_popup(id, name)
 {
 
+  id = id.split(" ").join(" ");
   for(var iii = 0; iii < popups.length; iii++)
   {   
     <!--//already registered. Bring it to front.-->
@@ -235,10 +236,16 @@ function load_state()
     if(data.toString().trim() == "") return;
     asjson = JSON.parse(data.toString());
     document.getElementById("chatsidebar").innerHTML = "";
-    $("#chatsidebar").append('<div class="sidebar-name">' + "<a href=\"javascript:register_popup('"+asjson.dm.name+"', '" + asjson.dm.name+"');\">" + "<span>"+asjson.dm.name+"</span></a></div>");
+    let element = "<div class='sidebar-name'>";
+    element    += "<a href='javascript:register_popup('" + asjson.dm.name + "', '" + asjson.dm.name+"');'>";
+    element    += "<span>" + asjson.dm.name + "</span></a></div>";
+    $("#chatsidebar").append(element);
     for(let i = 0; i < asjson.players.length; i++)
     {
-      $("#chatsidebar").append('<div class="sidebar-name">'+"<a href=\"javascript:register_popup('" + asjson.players[i].name + "', '" + asjson.players[i].name + "');\">"+"<span>"+asjson.players[i].name+"</span></a></div>");
+      element  = "<div class='sidebar-name'>";
+      element += "<a href='javascript:register_popup('" + asjson.dm.name + "', '" + asjson.dm.name+"');'>";
+      element += "<span>" + asjson.dm.name + "</span></a></div>";
+      $("#chatsidebar").append(element);
     }
   });
 }
@@ -252,43 +259,12 @@ window.addEventListener("resize", calculate_popups);
 window.addEventListener("load", calculate_popups);
 window.addEventListener("load", load_state);
 window.addEventListener("load", load_spells);
+//setInterval(load_state, 3000);
 
     </script>
   </head>
   <body>
-    <div id="chatsidebar" class="chat-sidebar">
-      <div class="sidebar-name">
-        <!-- Pass username and display name to register popup -->
-        <a href="javascript:register_popup('narayan-prusty', 'Narayan Prusty');">
-          <span>Narayan Prusty</span>
-        </a>
-      </div>
-      <div class="sidebar-name">
-        <a href="javascript:register_popup('qnimate', 'QNimate');">
-          <span>QNimate</span>
-        </a>
-      </div>
-      <div class="sidebar-name">
-        <a href="javascript:register_popup('qscutter', 'QScutter');">
-          <span>QScutter</span>
-        </a>
-      </div>
-      <div class="sidebar-name">
-        <a href="javascript:register_popup('qidea', 'QIdea');">
-          <span>QIdea</span>
-        </a>
-      </div>
-      <div class="sidebar-name">
-        <a href="javascript:register_popup('qazy', 'QAzy');">
-          <span>QAzy</span>
-        </a>
-      </div>
-      <div class="sidebar-name">
-        <a href="javascript:register_popup('qblock', 'QBlock');">
-          <span>QBlock</span>
-        </a>
-      </div>
-    </div>
+    <div id="chatsidebar" class="chat-sidebar"> </div>
 
   </body>
 </html>
