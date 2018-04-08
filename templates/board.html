@@ -3,7 +3,7 @@
   <head>
     <title>Facebook Style Popup Design</title>
     <style>
-@media only screen and (max-width : 540px) 
+@media only screen and (max-width : 540px)
 {
   .chat-sidebar
   {
@@ -33,7 +33,7 @@
               border: 1px solid rgba(29, 49, 91, .3);
             }
 
-            .sidebar-name 
+            .sidebar-name
             {
               padding-left: 10px;
               padding-right: 10px;
@@ -145,7 +145,7 @@ function close_popup(id)
 
       return;
     }
-  }   
+  }
 }
 
   <!--//displays the popups. Displays based on the maximum number of popups that can be displayed on the current viewport width-->
@@ -178,7 +178,7 @@ function register_popup(id, name)
 
   id = id.split(" ").join(" ");
   for(var iii = 0; iii < popups.length; iii++)
-  {   
+  {
     <!--//already registered. Bring it to front.-->
       if(id == popups[iii])
       {
@@ -191,19 +191,34 @@ function register_popup(id, name)
 
         return;
       }
-  }               
+  }
 
   var element = '<div class="popup-box chat-popup" id="'+ id +'">';
   element = element + '<div class="popup-head">';
   element = element + '<div class="popup-head-left">'+ name +'</div>';
   element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-  element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
+  element = element + '<div style="clear: both"></div></div><div class="popup-messages"> ';
+  element = element + '<input type="text" id="text' + id + '" style="position:absolute; bottom:0px; width: 98%" >';
+  element  = element + '</div></div>';
 
-  document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
+  document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;
 
   popups.unshift(id);
 
   calculate_popups();
+
+  $("#text" + id).keydown( function( event ) {
+    _to = $(this).parent().parent()[0].id;
+    if ( event.which === 13 ) {
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: '/message/{{roomid}}/' + _to,
+        data: { from : id, msg: $(this).val(), to_ : _to
+        }});
+    }
+  });
+  $(this).val("")
 
 }
 
@@ -235,18 +250,24 @@ function load_state()
     }
     if(data.toString().trim() == "") return;
     asjson = JSON.parse(data.toString());
+    console.log(asjson);
     document.getElementById("chatsidebar").innerHTML = "";
     let element = "<div class='sidebar-name'>";
-    element    += "<a href='javascript:register_popup('" + asjson.dm.name + "', '" + asjson.dm.name+"');'>";
+    element    += "<a href='javascript:register_popup(\"" + asjson.dm.name + "\", \"" + asjson.dm.name+"\");'>";
     element    += "<span>" + asjson.dm.name + "</span></a></div>";
     $("#chatsidebar").append(element);
     for(let i = 0; i < asjson.players.length; i++)
     {
       element  = "<div class='sidebar-name'>";
-      element += "<a href='javascript:register_popup('" + asjson.dm.name + "', '" + asjson.dm.name+"');'>";
-      element += "<span>" + asjson.dm.name + "</span></a></div>";
+      element += "<a href='javascript:register_popup(\"" + asjson.players[i].charname + "\", \"" + asjson.players[i].charname+"\");'>";
+      element += "<span>" + asjson.players[i].charname + "</span></a></div>";
       $("#chatsidebar").append(element);
     }
+    for(let i = 0; i < asjson.players.messages_from; i++)
+    {
+      $("#" + asjson.players.messages_from[i]).append(asjson.players.messages[i] + "<br>");
+    }
+
   });
 }
 
@@ -259,7 +280,7 @@ window.addEventListener("resize", calculate_popups);
 window.addEventListener("load", calculate_popups);
 window.addEventListener("load", load_state);
 window.addEventListener("load", load_spells);
-//setInterval(load_state, 3000);
+setInterval(load_state, 3000);
 
     </script>
   </head>

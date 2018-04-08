@@ -31,7 +31,7 @@ def serve_static(filename):
     root_dir = os.path.dirname(os.getcwd())
     return send_from_directory(os.path.join(root_dir,'YADCA' ,'static'), filename)
 
-@app.route('/<roomid>/<name>')
+@app.route('/<int:roomid>/<name>')
 def room(roomid, name):
     return render_template("board.html", name=name, roomid=roomid)
 
@@ -44,9 +44,19 @@ def spells():
     root_dir = os.path.dirname(os.getcwd())
     return send_from_directory(os.path.join(root_dir,'YADCA' ,'resources'), 'spells_processed.json')
 
-@app.route('/<roomid>/<name>/update', methods=['GET'])
+@app.route('/<int:roomid>/<name>/update', methods=['GET'])
 def update(roomid, name):
-    game = db.get_game(roomid).getJSONUpdate()
+    game = db.get_game(roomid).getJSONUpdate(name)
     return game
+
+@app.route('/message/<int:roomid>/<person>', methods=['POST'])
+def message(roomid, person):
+    print(request.form)
+    game = db.get_game(roomid)
+    for person_ in game.players:
+        if "".join(person_.charname.split(" ")).toLower() == person.toLower():
+            person_.messages.append((request.form["from"], request.form["msg"]))
+    game.dm.messages.append((request.form["from"], request.form['to_'], request.form["msg"]))
+    return ("", 204)
 
 

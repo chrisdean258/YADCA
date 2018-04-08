@@ -3,16 +3,19 @@ from Player import Player
 
 class Game:
     def __init__(self, dm_name):
-        self.dm = Player(dm_name)
-        self.players = []
+        self.players = [Player(dm_name)]
     def addPlayer(self, name, charname, charrace, charclass):
         self.players.append(Player(name, charname, charrace, charclass))
     def getPlayer(self, name):
-        return list(filter(lambda name_: name_ == name, self.players))[0]
+        return list(filter(lambda player: player.name== name or player.charname == name, self.players))[0]
     def getDM(self):
         return self.dm
-    def getJSONUpdate(self):
+    def getJSONUpdate(self, name):
         d = {}
-        d["players"] = [json.loads(player.toJSON()) for player in self.players]
-        d["dm"] = json.loads(self.dm.toJSON())
+        player = self.getPlayer(name)
+        d["players"] = [json.loads(p.toJSON()) for p in self.players]
+        d["messages"] = [p[0] for p in player.messages]
+        d["messages_from"] = [p[1] for p in player.messages]
+        if player.dm:
+            d["messages_to"] = [p[2] for p in player.messages]
         return json.dumps(d)
