@@ -54,9 +54,8 @@ def message(roomid, person):
     print(request.form)
     game = db.get_game(roomid)
     for person_ in game.players:
-        if "".join(person_.charname.split(" ")).toLower() == person.toLower():
-            person_.messages.append((request.form["from"], request.form["msg"]))
-    game.dm.messages.append((request.form["from"], request.form['to_'], request.form["msg"]))
+        if "".join(person_.searchname.split(" ")).lower() == person.lower() or person_.dm :
+            person_.messages.append((request.form["msg"], request.form["from"], request.form["to_"]))
     return ("", 204)
 
 
