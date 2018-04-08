@@ -15,16 +15,15 @@ app=Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    print(db)
     if request.method == 'GET':
         return render_template('index.html')
 
-    if request.form["charName"]:
-        try:
-            db.save_player(request.form["roomif"], request.form["name"], request.form["charname"], request.form["class"], request.form["class"])
-        except KeyError:
-            return redirect(url_for('error'))
-        return redirect(url_for('room', name=request.form["charName"], roomid="temp"))
+    print(request.form)
+
+    if "charName" in request.form and request.form["charName"].strip() != "":
+        db.save_player(request.form["roomCode"], request.form["name"], request.form["charName"], request.form["infoClass"], request.form["infoRace"])
+        #return redirect(url_for('error'))
+        return redirect(url_for('room', name=request.form["charName"], roomid=request.form["roomCode"]))
 
     name = request.form["name"]
     roomid = db.new_game(name)
@@ -37,7 +36,7 @@ def serve_static(filename):
 
 @app.route('/<roomid>/<name>')
 def room(roomid, name):
-    return render_template("board.html", name=name)
+    return render_template("board.html", name=name, roomid=roomid)
 
 @app.route('/error')
 def error():
@@ -47,4 +46,10 @@ def error():
 def spells():
     root_dir = os.path.dirname(os.getcwd())
     return send_from_directory(os.path.join(root_dir,'YADCA' ,'resources'), 'spells_processed.json')
+
+@app.route('/<roomid>/<name>/update', methods=['GET'])
+def update(roomid, name):
+    game = db.get_game(roomid).getJSONUpdate()
+    return game
+
 

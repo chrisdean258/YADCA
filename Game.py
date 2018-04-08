@@ -1,3 +1,4 @@
+import json
 from Player import Player
 
 class Game:
@@ -10,3 +11,8 @@ class Game:
         return list(filter(lambda name_: name_ == name, self.players))[0]
     def getDM(self):
         return self.dm
+    def getJSONUpdate(self):
+        d = {}
+        d["players"] = [json.loads(player.toJSON()) for player in self.players]
+        d["dm"] = json.loads(self.dm.toJSON())
+        return json.dumps(d)
