@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/css/boardCSS.css">
+</head>
+<body>
+
+<div id="mySidenavLeft" class="sidenavleft">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNavLeft()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<div id="mySidenavRight" class="sidenavright">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNavRight()">&times;</a>
+  <div class="search-container">
+    <form action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<span class="leftnav" style="font-size:30px;cursor:pointer" onclick="openNavLeft()">&#9776; Players</span>
+
+<span class="rightnav" style="font-size:30px;cursor:pointer" onclick="openNavRight()">&#9776; Spells</span>
+
+<script>
+function openNavLeft() {
+    document.getElementById("mySidenavLeft").style.width = "250px";
+}
+
+function closeNavLeft() {
+    document.getElementById("mySidenavLeft").style.width = "0";
+}
+
+function openNavRight() {
+    document.getElementById("mySidenavRight").style.width = "250px";
+}
+
+function closeNavRight() {
+    document.getElementById("mySidenavRight").style.width = "0";
+}
+</script>
+ 
+<center>
+<script src="js/scripts.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<form id="form1" runat="server">
+  <input type='file' id="imgInp" />
+  <br>
+  <img id="blah" src="#" alt="your image" />
+</center>
+
+    
+</body>
+</html> 
+<script>
+ function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    document.body.style.backgroundImage = "url('#imgInp')";
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+</script>
