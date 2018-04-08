@@ -38,6 +38,24 @@ body {
     transition: 0.3s;
 }
 
+.sidenavleft li {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.0s;
+}
+
+.guts {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
 .sidenavright a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -48,6 +66,10 @@ body {
 }
 
 .sidenavleft a:hover {
+    color: #f1f1f1;
+}
+
+.sidenavleft li:hover {
     color: #f1f1f1;
 }
 
