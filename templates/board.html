@@ -113,9 +113,12 @@
               height: 100%;
               overflow-y: scroll;
             }
-
-
-
+#container{width:100%;position:relative;}
+#num1, #num2 {display: flex;
+    align-items: center;}
+#left{float:left;width:100px;}
+#right{float:right;width:100px;}
+#center{margin:0 auto;width:100px;}
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -336,9 +339,23 @@ setInterval(load_state, 3000);
         <a href="#">Contact</a>
     </div>
 
+<div id="container">
+  <div id="left">Test</div>
+  <div id="right">
+<div id='container'>
+    <div id='num1'>
+    <span class="rightnav" style="font-size:30px;cursor:pointer" onclick="openNavRight()">&#9776; Spells</span>
+	</div>    
+	<div id='num2'>
+    <div id="chatsidebar" class="chat-sidebar"> </div>
+	</div>
+</div>
+
+</div>
+  <div id="center">Test</div>
+</div>
     <span class="leftnav" style="font-size:30px;cursor:pointer" onclick="openNavLeft()">&#9776; Players</span>
 
-    <span class="rightnav" style="font-size:30px;cursor:pointer" onclick="openNavRight()">&#9776; Spells</span>
 
     <script>
 function openNavLeft() {
@@ -369,7 +386,6 @@ function closeNavRight() {
 
 
 
-    <div id="chatsidebar" class="chat-sidebar"> </div>
   </body>
 </html>
 <script>
