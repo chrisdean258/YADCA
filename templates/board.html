@@ -1,5 +1,4 @@
-<!doctype html>
-<html>
+<!doctype html> <html>
   <head>
     <title>Player Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -137,6 +136,7 @@
           flex: 1; /*grow*/
         }
         .rightin{display: block;height:50%;}
+        .spellresults { color: #FFFFFF; font-size: 16px; text-align:left; }
 
 
     </style>
@@ -337,6 +337,7 @@ setInterval(load_state, 3000);
   <body>
 
     <div id="mySidenavLeft" class="sidenavleft">
+      <a href="javascript:void(0)">Room ID: {{roomid}}</a>
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavLeft()">&times;</a>
       <a href="#">About</a>
       <a href="#">Services</a>
@@ -346,19 +347,12 @@ setInterval(load_state, 3000);
 
     <div id="mySidenavRight" class="sidenavright">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavRight()">&times;</a>
-      <center><div class="search-container">
-          <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
-        </div></center>
-        <br>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+      <div class="search-container">
+        <input type="text" id="spellsearch" onkeypress="return updateSpells();" onkeypress="return updateSpells();">
+        <div id="spelltext"> </div>
+        <div id="spells"> </div>
+      </div>
     </div>
-
     <div class="container">
       <!--Left Div-->
       <div>
@@ -385,9 +379,6 @@ setInterval(load_state, 3000);
         <div class="rightin">
           <div id="chatsidebar" class="chat-sidebar"> </div>
           <div id="chatsidebar" class="spell-search">
-            <input type="text" id="spellsearch" onkeypress="return updateSpells();">
-            <div id="spelltext"> </div>
-            <div id="spells"> </div>
           </div>
         </div>
       </div>
@@ -443,15 +434,15 @@ function updateSpells()
   words = word.split(" ");
   for(let i = 0; i < spells.length; i++)
   {
-    spells[i].count = 0
-      for(let j = 0; j < words.length; j++)
+    spells[i].count = 0;
+    for(let j = 0; j < words.length; j++)
+    {
+      if(spells[i].search_string.toLowerCase().indexOf(words[j].toLowerCase()) != -1)
       {
-        if(spells[i].search_string.toLowerCase().indexOf(words[j].toLowerCase()) != -1)
-        {
-          matches.push(spells[i]);
-          spells[i].count++;
-        }
+        spells[i].count++;
       }
+    }
+    if(spells[i].count > 0) matches.push(spells[i]);
   }
   matches.sort(function(a,b) {return b.count > a.count;});
   matches = matches.splice(0,10);
@@ -459,12 +450,12 @@ function updateSpells()
   {
     for(let i = 0; i < matches.length; i++)
     {
-      $("#spells").append("<bold onclick='$(\"#spellsearch\").val(\""+matches[i].name+"\");updateSpells();'>" + matches[i].name  + "</bold><br>");
+      $("#spells").append("<bold class=\"spellresults\" onclick='$(\"#spellsearch\").val(\""+matches[i].name+"\");updateSpells();'>" + matches[i].name  + "</bold><br>");
     }
   }
-  else if(matches.length == 1)
+  else if(matches.length == 1 || spells[i].name.toLowerCase().trim() == word.toLowerCase().trim()  || (matches.length > 1 && matches[0].count > matches[1].count))
   {
-    $("#spelltext").append(matches[0].html_description);
+    $("#spelltext").append("<span class=\"spellresults\" >" + matches[0].html_description + "</span>");
   }
   return true;
 }
