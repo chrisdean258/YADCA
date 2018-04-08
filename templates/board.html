@@ -254,8 +254,11 @@ function load_state()
     }
     if(data.toString().trim() == "") return;
     asjson = JSON.parse(data.toString());
-    console.log(asjson);
     document.getElementById("chatsidebar").innerHTML = "";
+    element  = "<div class='sidebar-name'>";
+    element += "<a href='javascript:register_popup(\"All\", \"All\");'>";
+    element += "<span>All</span></a></div>";
+    $("#chatsidebar").append(element);
     element  = "<div class='sidebar-name'>";
     element += "<a href='javascript:register_popup(\"" + asjson.players[0].name + "\", \"" + asjson.players[0].name+"\");'>";
     element += "<span>" + asjson.players[0].name + "</span></a></div>";
@@ -269,6 +272,12 @@ function load_state()
     }
     for(let i = 0; i < asjson.messages_from.length; i++)
     {
+      if(asjson.messages_to.strip().toLowerCase() == "all")
+      {
+        register_popup("All", "All");
+        $($("#All").children()[1]).append("<b>" + asjson.messages_from[i]+ ":</b> "+ asjson.messages[i] + "<br>");
+        continue;
+      }
       register_popup(asjson.messages_from[i],asjson.messages_from[i]);
       if(!asjson.dm || asjson.messages_to[i] == "{{name}}")
       {
@@ -283,8 +292,14 @@ function load_state()
   });
 }
 
+var spells = []
+
 function load_spells()
 {
+  $.get("/spells", function(data) {
+    console.log(data)
+    spells = JSON.parse(data.toString());
+  });
 }
 
 <!--//recalculate when window is loaded and also when window is resized.-->
