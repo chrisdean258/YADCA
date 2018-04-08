@@ -1,7 +1,10 @@
 <!doctype html>
 <html>
   <head>
-    <title>Facebook Style Popup Design</title>
+    <title>Player Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/boardCSS.css">
     <style>
 @media only screen and (max-width : 540px)
 {
@@ -212,16 +215,16 @@ function register_popup(id, name)
 
 function I_worked_at_least_4_hours_on_this( event , id) {
   _to = id
-  if ( event.which === 13 ) {
-    event.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: '/message/{{roomid}}/' + _to,
-      data: { from : "{{name}}", msg: $("#text" + id).val(), to_ : _to
-      }});
-    $($("#" + id).children()[1]).append("<b>" + id+ ":</b> "+ $("#text" + id).val() + "<br>");
-    $("#text" + id).val("")
-  }
+    if ( event.which === 13 ) {
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: '/message/{{roomid}}/' + _to,
+        data: { from : "{{name}}", msg: $("#text" + id).val(), to_ : _to
+        }});
+      $($("#" + id).children()[1]).append("<b>" + "{{name}}"+ ":</b> "+ $("#text" + id).val() + "<br>");
+      $("#text" + id).val("")
+    }
 }
   <!--//calculate the total number of popups suitable and then populate the toatal_popups variable.-->
 function calculate_popups()
@@ -266,11 +269,12 @@ function load_state()
     }
     for(let i = 0; i < asjson.messages_from.length; i++)
     {
-      if(!asjson.dm)
+      register_popup(asjson.messages_from[i],asjson.messages_from[i]);
+      if(!asjson.dm || asjson.messages_to[i] == "{{name}}")
       {
         $($("#" + asjson.messages_from[i]).children()[1]).append("<b>" + asjson.messages_from[i]+ ":</b> "+ asjson.messages[i] + "<br>");
       }
-      else
+      else if(asjson.messages_from[i] != "{{name}}")
       {
         $($("#" + asjson.messages_from[i]).children()[1]).append("<b>" + asjson.messages_from[i]+ "-> "+ asjson.messages_to[i] +" :</b> "+ asjson.messages[i] + "<br>");
       }
@@ -294,6 +298,79 @@ setInterval(load_state, 3000);
   </head>
   <body>
 
+    <div id="mySidenavLeft" class="sidenavleft">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNavLeft()">&times;</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div id="mySidenavRight" class="sidenavright">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNavRight()">&times;</a>
+      <center><div class="search-container">
+          <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div></center>
+        <br>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <span class="leftnav" style="font-size:30px;cursor:pointer" onclick="openNavLeft()">&#9776; Players</span>
+
+    <span class="rightnav" style="font-size:30px;cursor:pointer" onclick="openNavRight()">&#9776; Spells</span>
+
+    <script>
+function openNavLeft() {
+  document.getElementById("mySidenavLeft").style.width = "250px";
+}
+
+function closeNavLeft() {
+  document.getElementById("mySidenavLeft").style.width = "0";
+}
+
+function openNavRight() {
+  document.getElementById("mySidenavRight").style.width = "250px";
+}
+
+function closeNavRight() {
+  document.getElementById("mySidenavRight").style.width = "0";
+}
+    </script>
+
+    <center>
+      <script src="/js/scripts.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <form id="form1" runat="server">
+        <input type='file' id="imgInp" />
+        <br>
+        <img id="blah" src="#" alt="your image" />
+    </center>
+
+
+
     <div id="chatsidebar" class="chat-sidebar"> </div>
   </body>
 </html>
+<script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+document.body.style.backgroundImage = "url('#imgInp')";
+$("#imgInp").change(function(){
+  readURL(this);
+});
+</script>
