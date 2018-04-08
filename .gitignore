@@ -1,2 +1,4 @@
 *.pyc
+:w
+__pycache__
 
