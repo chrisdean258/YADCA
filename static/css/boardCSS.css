@@ -55,6 +55,40 @@ body {
     color: #f1f1f1;
 }
 
+.sidenavleft li {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.guts {
+    padding: 8px 8px 8px 24px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #818181;
+    display: block;
+    transition: 0.0s;
+}
+
+.sidenavright li {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenavleft li:hover {
+    color: #f1f1f1;
+}
+
+.sidenavright li:hover {
+    color: #f1f1f1;
+}
 
 .sidenavleft .closebtn {
     position: absolute;
