@@ -356,10 +356,9 @@ setInterval(load_state, 3000);
    $('.guts').hide();
   $('.player').on('click', function(){
         if(!($(this).children('.guts').is(':visible'))){
-                $('.guts').slideUp();
-                $(this).children('.guts').slideDown();
+                $(this).children('.guts').show();
               } else {
-                      $('.guts').slideUp();
+                      $(this).children('.guts').slideUp();
                     }
       });
     </script>
