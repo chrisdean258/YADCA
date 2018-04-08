@@ -19,7 +19,7 @@ def index():
         return render_template('index.html')
 
     if "charName" in request.form and request.form["charName"].strip() != "":
-        db.save_player(request.form["roomCode"], request.form["name"], request.form["charName"], request.form["infoClass"], request.form["infoRace"])
+        db.save_player(request.form["roomCode"], request.form["name"], request.form["charName"], request.form["charClass"], request.form["charRace"])
         return redirect(url_for('room', name=request.form["charName"], roomid=request.form["roomCode"]))
 
     name = request.form["name"]
