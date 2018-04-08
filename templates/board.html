@@ -3,6 +3,7 @@
   <head>
     <title>Player Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/boardCSS.css">
     <style>
@@ -27,9 +28,12 @@
             .chat-sidebar
             {
               width: 200px;
-              position: fixed;
+			  float: right;
+              /*position: absolute;*/
+			  display:block;
               height: 100%;
               right: 0px;
+border-style: solid;
               top: 0px;
               padding-top: 10px;
               padding-bottom: 10px;
@@ -113,12 +117,28 @@
               height: 100%;
               overflow-y: scroll;
             }
-#container{width:100%;position:relative;}
-#num1, #num2 {display: flex;
-    align-items: center;}
+/*#container{width:100%;position:relative;}*/
+#container2{width:100%;position:relative; height: auto;border-style: solid;}
+
+#num1{width:100%;
+float:left; border-style: solid;}
+#num2{width:100%;
+clear:both; border-style: solid;}
+ /*#num2 {display: flex;
+    align-items: center;}*/
 #left{float:left;width:100px;}
 #right{float:right;width:100px;}
 #center{margin:0 auto;width:100px;}
+.container {
+  display: flex;
+  height:500px;
+}
+.container > div {
+  flex: 1; /*grow*/
+}
+.rightin{display: block;height:50%;}
+
+
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -339,22 +359,34 @@ setInterval(load_state, 3000);
         <a href="#">Contact</a>
     </div>
 
-<div id="container">
-  <div id="left">Test</div>
-  <div id="right">
-<div id='container'>
-    <div id='num1'>
-    <span class="rightnav" style="font-size:30px;cursor:pointer" onclick="openNavRight()">&#9776; Spells</span>
-	</div>    
-	<div id='num2'>
-    <div id="chatsidebar" class="chat-sidebar"> </div>
-	</div>
-</div>
-
-</div>
-  <div id="center">Test</div>
-</div>
+<div class="container">
+  <!--Left Div-->
+  <div>
     <span class="leftnav" style="font-size:30px;cursor:pointer" onclick="openNavLeft()">&#9776; Players</span>
+  </div>
+  <!--Center Div-->
+  <div>
+    <center>
+      <script src="/js/scripts.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <form id="form1" runat="server">
+        <input type='file' id="imgInp" />
+        <br>
+        <img id="blah" src="#" alt="your image" />
+    </center>
+  </div>  
+  <!--Right Div-->
+  <div>
+	<!--Top Div-->
+  	<div class="rightin">
+    	 <span class="rightnav" style="font-size:30px;cursor:pointer" onclick="openNavRight()">&#9776; Spells</span>
+    </div>
+	<!--Bottom Div-->
+    <div class="rightin">
+		<div id="chatsidebar" class="chat-sidebar"> </div>
+    </div>
+  </div>
+</div>
 
 
     <script>
@@ -375,14 +407,6 @@ function closeNavRight() {
 }
     </script>
 
-    <center>
-      <script src="/js/scripts.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <form id="form1" runat="server">
-        <input type='file' id="imgInp" />
-        <br>
-        <img id="blah" src="#" alt="your image" />
-    </center>
 
 
 
